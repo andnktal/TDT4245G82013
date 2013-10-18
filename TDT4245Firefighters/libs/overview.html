@@ -1,0 +1,66 @@
+<body>
+Welcome to the documentation for the Sheep framework!
+
+<h1>Installing Android</h1>
+<p>
+	To install, follow the instructions found in the document 
+	<a href="http://developer.android.com/sdk/1.5_r1/installing.html">Installing the Android SDK</a>. 
+</p>
+<p>
+	Note that when you have installed Eclipse, Android SDK and the Android Eclipse plug-in, you must create
+	an <a href="http://developer.android.com/guide/developing/tools/avd.html">Android Virtual Device</a>
+	before you can debug or run your application. The easier way to do this is to start a command prompt, 
+	browser to <android-sdk>/tools directory, and run: <code>android create avd -n Default -t 2</code>.
+</p>
+
+
+<h1>Using Sheep</h1>
+<p>
+Using Sheep is just like <a href="http://developer.android.com/guide/developing/eclipse-adt.html">creating a normal Android application</a>, but adding a reference 
+to the sheep library (the sheep.jar file). 
+
+This is done by right clicking on your project, select <strong>Properties &gt; Java Build path 
+&gt; Libraries &gt; Add Extern JARs</strong>. Locate sheep.jar, and add it to enable Sheep.
+</p>
+
+<p>
+When creating a new project, the Android plugin will generate some files. If your project name
+is MyGame, then it will generate MyGame.java. You should do three things:
+
+<ol>
+<li>Create an instance of sheep.game.Game. </li>
+<li>Create a new subclass of sheep.game.State, let's call it TitleScreen. This will be the state 
+the user initially sees when the application is started. Add an instance of the class to the newly created
+game</li>
+<li>Set the current view to the Game.</li>
+</ol>
+
+This is how your MyGame class should look:
+<pre>
+
+// Don't forget this!
+import sheep.game.Game;
+
+public class MyGame extends Activity {
+    /** Called when the activity is first created. */
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        // Create the game.
+        Game game = new Game(this, null);
+        
+        // Push the main state.
+        game.pushState(new TitleScreen());
+        
+        // View the game.
+        setContentView(game);
+    }
+}
+</pre>
+
+That's it! Use the TitleScreen class to interface with the Sheep API. You can push other
+game states from within a state, just use the getGame method. :)
+	
+</p>
+
+</body>
