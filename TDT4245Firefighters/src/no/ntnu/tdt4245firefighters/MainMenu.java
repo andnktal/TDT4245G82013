@@ -1,7 +1,10 @@
 package no.ntnu.tdt4245firefighters;
 
+import sheep.game.Game;
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.Menu;
 
 public class MainMenu extends Activity {
@@ -9,7 +12,19 @@ public class MainMenu extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        
+        Game game = new Game(this, null);
+        
+        Display display = getWindowManager().getDefaultDisplay();
+        //Point size = new Point();
+        //display.getSize(size);
+        int width = display.getWidth();
+        int height = display.getHeight();
+        
+        game.pushState(new FirefighterGame(width, height));
+        
+        setContentView(game);
+        //setContentView(R.layout.activity_main_menu);
     }
 
 
