@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="sheep.gui.WidgetListener"/>
+<fullyQualifiedTypeName name="sheep.game.State"/>
+<fullyQualifiedTypeName name="android.graphics.Canvas"/>
+<fullyQualifiedTypeName name="sheep.game.Game"/>
+<fullyQualifiedTypeName name="android.graphics.RectF"/>
+<fullyQualifiedTypeName name="android.view.WindowManager"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.view.Display"/>
+<fullyQualifiedTypeName name="android.graphics.Point"/>
+<fullyQualifiedTypeName name="android.graphics.Matrix.ScaleToFit"/>
+<fullyQualifiedTypeName name="sheep.input.TouchListener"/>
+<fullyQualifiedTypeName name="sheep.gui.TextButton"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="no.ntnu.tdt4245firefighters.R.drawable"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,84 @@
+package no.ntnu.tdt4245firefighters;
+
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import sheep.game.State;
+import sheep.graphics.Image;
+import sheep.gui.TextButton;
+import sheep.gui.WidgetAction;
+import sheep.gui.WidgetListener;
+import sheep.input.TouchListener;
+
+public class FirefighterGame extends State implements WidgetListener{
+
+	
+	private Image map;
+	private Image p1pos;
+	
+	private float fP1X = 0.0f;
+	private float fP1Y = 0.0f;
+	
+	private Matrix matrix;
+	
+	private TextButton test;
+	
+	public FirefighterGame(int screenWidth, int screenHeight)
+	{
+		map = new Image(R.drawable.testmap);
+		matrix = new Matrix();
+		
+		RectF screen = new RectF(0,0, screenWidth, screenHeight);
+		RectF image = new RectF(0,0, map.getWidth(), map.getHeight());
+		
+		matrix.setRectToRect(image, screen, Matrix.ScaleToFit.CENTER);
+		matrix.setRotate(90, screenWidth/2, (screenWidth/2));
+		
+		p1pos = new Image(R.drawable.ff_pos1);
+		//fP1X = 50.0f;
+		//fP1Y = screenHeight - p1pos.getHeight();
+		fP1X++;
+		fP1Y++;
+		
+		TouchListener touchMove = new TouchListener(){
+
+			@Override
+			public boolean onTouchDown(MotionEvent event) {
+				fP1X = event.getX();
+				fP1Y = event.getY();
+				return true;
+			}
+
+			@Override
+			public boolean onTouchUp(MotionEvent event) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+
+			@Override
+			public boolean onTouchMove(MotionEvent event) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+		};
+		
+		this.addTouchListener(touchMove);
+	}
+	
+	@Override
+	public void draw(Canvas canvas) {
+		super.draw(canvas);
+		//map.draw(canvas, 0, 0);
+		map.draw(canvas, matrix);
+		p1pos.draw(canvas, fP1X, fP1X);
+	}	
+	
+	@Override
+	public void actionPerformed(WidgetAction action) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
