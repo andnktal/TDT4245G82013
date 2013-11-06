@@ -34,8 +34,7 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_connecting_to_agame=0x7f030000;
-        public static final int activity_display_hosting_new_game_message_acivity=0x7f030001;
-        public static final int activity_main_menu=0x7f030002;
+        public static final int activity_main_menu=0x7f030001;
     }
     public static final class menu {
         public static final int connecting_to_agame=0x7f070000;

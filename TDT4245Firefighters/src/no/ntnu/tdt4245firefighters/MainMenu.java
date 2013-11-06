@@ -1,8 +1,10 @@
 package no.ntnu.tdt4245firefighters;
 
+import sheep.game.Game;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
 import android.view.View;
 
@@ -26,8 +28,19 @@ public class MainMenu extends Activity {
     public void sendHostingAnewGameMessage(View view) {
         // Do something in response to button
     	
-    	Intent intent = new Intent(this, DisplayHostingNewGameMessageActivity.class);
-    	startActivity(intent);
+    	//Intent intent = new Intent(this, DisplayHostingNewGameMessageActivity.class);
+    	//startActivity(intent);
+        Game game = new Game(this, null);
+        
+        Display display = getWindowManager().getDefaultDisplay();
+        //Point size = new Point();
+        //display.getSize(size);
+        int width = display.getWidth();
+        int height = display.getHeight();
+        
+        game.pushState(new FirefighterGame(width, height));
+        
+        setContentView(game);
     }
     
     public void sendConnectingToAGameMessage(View view) {
