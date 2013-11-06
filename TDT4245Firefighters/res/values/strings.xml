@@ -4,5 +4,14 @@
     <string name="app_name">TDT4245 Firefighters</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="menu">Menu</string>
+    <string name="host_a_new_game">Host a new game</string>
+    <string name="connect_to_a_game">Connect to a game</string>
+    <string name="exit">Exit</string>
+    <string name="title_activity_display_hosting_new_game_message_acivity">DisplayHostingNewGameMessageAcivity</string>
+    <string name="hosting_a_new_game">Hosting a new game...</string>
+    <string name="connecting_to_a_game">Connecting to a game...</string>
+    <string name="exiting">Exiting...</string>
+    <string name="title_activity_connecting_to_agame">ConnectingToAGame</string>
 
 </resources>

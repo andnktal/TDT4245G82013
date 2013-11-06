@@ -22,6 +22,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="no.ntnu.tdt4245firefighters.DisplayHostingNewGameMessageActivity"
+            android:label="@string/title_activity_display_hosting_new_game_message_acivity"
+            android:parentActivityName="com.example.thefirefighter.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.thefirefighter.MainActivity" />
+        </activity>
+        <activity
+            android:name="no.ntnu.tdt4245firefighters.DisplayConnectingToAGameActivity"
+            android:label="@string/title_activity_connecting_to_agame"
+            android:parentActivityName="com.example.thefirefighter.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.thefirefighter.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
