@@ -24,7 +24,7 @@ public class FirefighterGame extends State implements WidgetListener{
 		RectF image = new RectF(0,0, map.getWidth(), map.getHeight());
 		
 		matrix.setRectToRect(image, screen, Matrix.ScaleToFit.CENTER);
-		//matrix.setRotate(90, screenWidth/2, (screenWidth/2));
+		matrix.setRotate(90, screenWidth/2, (screenWidth/2));
 		
 	}
 	
