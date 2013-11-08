@@ -18,7 +18,7 @@ public class Fire {
 		this.x = x;
 		this.y = y;
 		
-		bb = new BoundingBox(x - image.getWidth(), x + image.getWidth(), y - image.getHeight(), y + image.getHeight());
+		bb = new BoundingBox(x, x + image.getWidth(), y, y + image.getHeight());
 	}
 	
 	public Image getImage()

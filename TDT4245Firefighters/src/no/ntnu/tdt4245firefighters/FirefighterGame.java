@@ -1,6 +1,5 @@
 package no.ntnu.tdt4245firefighters;
 
-import android.R.color;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,19 +8,12 @@ import android.view.MotionEvent;
 import sheep.game.State;
 import sheep.graphics.Font;
 import sheep.graphics.Image;
+import sheep.gui.TextButton;
 import sheep.gui.WidgetAction;
 import sheep.gui.WidgetListener;
 import sheep.input.TouchListener;
-import android.content.pm.LabeledIntent;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.os.CountDownTimer;
-import android.util.Log;
-import android.view.MotionEvent;
 import sheep.math.BoundingBox;
 
 import java.util.ArrayList;
@@ -41,7 +33,6 @@ public class FirefighterGame extends State implements WidgetListener{
 	private String p1String = "Rescue baby?";
 	private Paint p1Paint;
 	
-	private TextButton msgBox;
 	private TextButton timer;
 	private String timeValue;
 	
@@ -57,9 +48,6 @@ public class FirefighterGame extends State implements WidgetListener{
 	private Rect timerBarRectangle; //
 	
 	private int screenWidthIs;
-	private TextButton test;
-	private boolean rescueText = false;
-	private String rescueSTR = "Rescue baby?";
 
 	private List<Event> gameEvents = new ArrayList<Event>();
 	private List<Fire> firehazards = new ArrayList<Fire>();
@@ -75,13 +63,6 @@ public class FirefighterGame extends State implements WidgetListener{
 		
 		timer = new TextButton(screenWidth - 50, 30, timeValue, new Paint[]{Font.BLUE_SANS_BOLD_20, Font.BLUE_SANS_BOLD_20});
 		
-		//msgBox = new TextButton(screenWidth - 70, 30, "something", new Paint[]{Font.BLUE_SANS_BOLD_20, Font.BLUE_SANS_BOLD_20});
-		//timer.
-		
-		event1 = new Image(R.drawable.baby);
-		event2 = new Image(R.drawable.baby);
-		event3 = new Image(R.drawable.baby);
-		
 		p1pos = new Image(R.drawable.ff_pos1);
 		fP1X = 50.0f;
 		fP1Y = screenHeight - p1pos.getHeight();
@@ -89,7 +70,6 @@ public class FirefighterGame extends State implements WidgetListener{
 		timerBarRectangle =  new Rect(10, 10, screenWidth - 10 , 30);
 		bbP1 = new BoundingBox(fP1X, fP1X + p1pos.getWidth(), fP1Y, fP1Y + p1pos.getHeight());
 		
-		bbEvent1 = new BoundingBox(150.5f, 150.5f + event1.getWidth()*2, 205.5f, 205.5f + event1.getHeight()*2);
 		SetupEvents(0);
 		SetupFire(0);
 		
@@ -209,7 +189,6 @@ public class FirefighterGame extends State implements WidgetListener{
 		p1pos.draw(canvas, fP1X, fP1Y);
 		
 		timer.draw(canvas);
-		//msgBox.draw(canvas);
 		
 		canvas.drawRect(timerBarRectangle, timerBar); //drawLine(10, 10, timerBarLength, 10, timerBar);
 
