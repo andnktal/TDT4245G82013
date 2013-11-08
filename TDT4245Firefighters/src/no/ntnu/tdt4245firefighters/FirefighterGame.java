@@ -1,5 +1,11 @@
 package no.ntnu.tdt4245firefighters;
 
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.util.Log;
+import android.view.MotionEvent;
 import sheep.game.State;
 import sheep.graphics.Font;
 import sheep.graphics.Image;
@@ -17,6 +23,7 @@ import android.graphics.RectF;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.MotionEvent;
+import sheep.math.BoundingBox;
 
 public class FirefighterGame extends State implements WidgetListener{
 
@@ -30,6 +37,9 @@ public class FirefighterGame extends State implements WidgetListener{
 	
 	private float fP1X;
 	private float fP1Y;
+	
+	private BoundingBox bbP1;
+	private BoundingBox bbEvent1;
 	
 	private Matrix matrix;
 	
@@ -49,6 +59,9 @@ public class FirefighterGame extends State implements WidgetListener{
 	private Rect timerBarRectangle; //
 	
 	private int screenWidthIs;
+	private TextButton test;
+	private boolean rescueText = false;
+	private String rescueSTR = "Rescue baby?";
 	
 	public FirefighterGame(int screenWidth, int screenHeight)
 	{
@@ -78,6 +91,9 @@ public class FirefighterGame extends State implements WidgetListener{
 		fP1Y = screenHeight - p1pos.getHeight();
 		
 		timerBarRectangle =  new Rect(10, 10, screenWidth - 10 , 30);
+		bbP1 = new BoundingBox(fP1X, fP1X + p1pos.getWidth(), fP1Y, fP1Y + p1pos.getHeight());
+		
+		bbEvent1 = new BoundingBox(150.5f, 150.5f + event1.getWidth()*2, 205.5f, 205.5f + event1.getHeight()*2);
 		
 		TouchListener touchMove = new TouchListener(){
 
@@ -86,6 +102,7 @@ public class FirefighterGame extends State implements WidgetListener{
 				fP1X = event.getX() - p1pos.getWidth()/2;
 				fP1Y = event.getY() - p1pos.getHeight()/2;
 				Log.i("COORDINATES Touch", "(" + Float.toString(fP1X) + " / " + Float.toString(fP1Y) + ")");
+				
 				return true;
 			}
 
@@ -151,15 +168,30 @@ public class FirefighterGame extends State implements WidgetListener{
 		//map.draw(canvas, 0, 0);
 		map.draw(canvas, matrix);
 		event1.draw(canvas, 160.5f, 215.5f);
-		event2.draw(canvas, 184.5f, 371.5f);
-		event3.draw(canvas, 306.5f, 593.5f);
+		//event2.draw(canvas, 184.5f, 371.5f);
+		//event3.draw(canvas, 306.5f, 593.5f);
 		p1pos.draw(canvas, fP1X, fP1Y);
 		
 		timer.draw(canvas);
 		//msgBox.draw(canvas);
 		
 		canvas.drawRect(timerBarRectangle, timerBar); //drawLine(10, 10, timerBarLength, 10, timerBar);
-	}	
+
+		if(rescueText)
+			canvas.drawText(rescueSTR, fP1X, fP1Y + 30, new Paint());
+	}
+	
+	@Override
+	public void update(float dt) {
+		
+		bbP1 = new BoundingBox(fP1X, fP1X + p1pos.getWidth(), fP1Y, fP1Y + p1pos.getHeight());
+		
+		if(bbEvent1.contains(bbP1))
+		{
+			event1 = new Image(R.drawable.babyrescued);
+			rescueText = true;
+		}
+	}
 	
 	@Override
 	public void actionPerformed(WidgetAction action) {
