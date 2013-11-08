@@ -1,15 +1,14 @@
 package no.ntnu.tdt4245firefighters;
 
+import android.R.color;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 import sheep.game.State;
 import sheep.graphics.Font;
 import sheep.graphics.Image;
-import sheep.gui.TextButton;
 import sheep.gui.WidgetAction;
 import sheep.gui.WidgetListener;
 import sheep.input.TouchListener;
@@ -25,23 +24,22 @@ import android.util.Log;
 import android.view.MotionEvent;
 import sheep.math.BoundingBox;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FirefighterGame extends State implements WidgetListener{
 
 	
 	private Image map;
 	private Image p1pos;
 	
-	private Image event1;
-	private Image event2;
-	private Image event3;
-	
 	private float fP1X;
 	private float fP1Y;
 	
 	private BoundingBox bbP1;
-	private BoundingBox bbEvent1;
 	
-	private Matrix matrix;
+	private String p1String = "Rescue baby?";
+	private Paint p1Paint;
 	
 	private TextButton msgBox;
 	private TextButton timer;
@@ -62,17 +60,15 @@ public class FirefighterGame extends State implements WidgetListener{
 	private TextButton test;
 	private boolean rescueText = false;
 	private String rescueSTR = "Rescue baby?";
+
+	private List<Event> gameEvents = new ArrayList<Event>();
+	private List<Fire> firehazards = new ArrayList<Fire>();
 	
 	public FirefighterGame(int screenWidth, int screenHeight)
 	{
-		map = new Image(R.drawable.testmap);
-		matrix = new Matrix();
 		
-		RectF screen = new RectF(0,0, screenWidth, screenHeight);
-		RectF image = new RectF(0,0, map.getWidth(), map.getHeight());
-		
-		matrix.setRectToRect(image, screen, Matrix.ScaleToFit.CENTER);
-		matrix.setRotate(90, screenWidth/2, (screenWidth/2));
+		DisplayMap(0);
+		SetupPlayers(0);
 		
 		timeValue = "15:00";
 	
@@ -94,6 +90,8 @@ public class FirefighterGame extends State implements WidgetListener{
 		bbP1 = new BoundingBox(fP1X, fP1X + p1pos.getWidth(), fP1Y, fP1Y + p1pos.getHeight());
 		
 		bbEvent1 = new BoundingBox(150.5f, 150.5f + event1.getWidth()*2, 205.5f, 205.5f + event1.getHeight()*2);
+		SetupEvents(0);
+		SetupFire(0);
 		
 		TouchListener touchMove = new TouchListener(){
 
@@ -162,14 +160,52 @@ public class FirefighterGame extends State implements WidgetListener{
 		this.addTouchListener(touchMove);
 	}
 	
+	private void DisplayMap(int nMapsize)
+	{		
+		map = new Image(R.drawable.map480x800);	
+	}
+	
+	private void SetupPlayers(int nMapSize)
+	{
+		fP1X = 216.0f;
+		fP1Y = 162.0f;
+		
+		p1pos = new Image(R.drawable.ff_pos1);
+		p1Paint = new Paint();
+		p1Paint.setColor(Color.BLUE);
+	}
+	
+	private void SetupEvents(int nMapSize)
+	{
+		Event ev = new Event(new Image(R.drawable.baby), 129.0f, 240.0f);
+		ev.setName("Baby Cradle");
+		ev.setDescription("A baby has been left here.");
+		gameEvents.add(ev);
+	}
+	
+	private void SetupFire(int nMapSize)
+	{
+		firehazards.add(new Fire(33.0f, 390f));
+		firehazards.add(new Fire(129.0f, 289f));
+		firehazards.add(new Fire(228.0f, 609f));
+	}
+	
 	@Override
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
-		//map.draw(canvas, 0, 0);
-		map.draw(canvas, matrix);
-		event1.draw(canvas, 160.5f, 215.5f);
-		//event2.draw(canvas, 184.5f, 371.5f);
-		//event3.draw(canvas, 306.5f, 593.5f);
+		map.draw(canvas, 0, 0);
+
+		//Draw event icons
+		for(Event ev : gameEvents)
+		{
+			ev.getImage().draw(canvas, ev.getX(), ev.getY());
+		}
+		
+		for(Fire fir : firehazards)
+		{
+			fir.getImage().draw(canvas, fir.getX(), fir.getY());
+		}
+		
 		p1pos.draw(canvas, fP1X, fP1Y);
 		
 		timer.draw(canvas);
@@ -177,19 +213,32 @@ public class FirefighterGame extends State implements WidgetListener{
 		
 		canvas.drawRect(timerBarRectangle, timerBar); //drawLine(10, 10, timerBarLength, 10, timerBar);
 
-		if(rescueText)
-			canvas.drawText(rescueSTR, fP1X, fP1Y + 30, new Paint());
+		canvas.drawText(p1String, fP1X, fP1Y - 5, p1Paint);
 	}
 	
 	@Override
 	public void update(float dt) {
 		
-		bbP1 = new BoundingBox(fP1X, fP1X + p1pos.getWidth(), fP1Y, fP1Y + p1pos.getHeight());
+		bbP1 = new BoundingBox(fP1X - 20, fP1X + p1pos.getWidth() + 20, fP1Y - 20, fP1Y + p1pos.getHeight() + 20);
 		
-		if(bbEvent1.contains(bbP1))
+		p1String = "";
+		
+		for(Event ev : gameEvents)
 		{
-			event1 = new Image(R.drawable.babyrescued);
-			rescueText = true;
+			if(bbP1.contains(ev.getBoundingBox()))
+			{
+				p1String = "Rescue " + ev.getName() + "?";
+				p1Paint.setColor(Color.BLUE);
+			}
+		}
+		
+		for(Fire fir : firehazards)
+		{
+			if(bbP1.contains(fir.getBoundingBox()))
+			{
+				p1String = "FIRE!!! FIRE!!! FIRE!!!";
+				p1Paint.setColor(Color.RED);
+			}
 		}
 	}
 	
