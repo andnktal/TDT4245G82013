@@ -9,5 +9,6 @@
     <string name="connect_to_a_game">Connect to a game</string>
     <string name="hosting_a_new_game">Hosting a new game</string>
     <string name="menu">Menu</string>
+    <string name="timer">Timer</string>
 
 </resources>
