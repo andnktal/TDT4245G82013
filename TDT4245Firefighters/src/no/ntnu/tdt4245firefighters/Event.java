@@ -1,6 +1,7 @@
 package no.ntnu.tdt4245firefighters;
 
 import sheep.graphics.Image;
+import sheep.gui.TextButton;
 import sheep.math.BoundingBox;
 
 public class Event {
@@ -11,6 +12,9 @@ public class Event {
 	private String name;
 	private String description;
 	private BoundingBox bb;
+	private boolean seen = false;
+	private boolean handled = false;
+	
 	
 	public Event(Image image, float x, float y)
 	{
@@ -56,5 +60,21 @@ public class Event {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	public void setSeen() {
+		this.seen = true;
+	}
+	
+	public boolean getSeen() {
+		return seen;
+	}
+	
+	public void setHandled() {
+		this.handled = true;
+	}
+	
+	public boolean getHandled() {
+		return this.handled;
+	}
+	
 }

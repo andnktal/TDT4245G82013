@@ -2,8 +2,10 @@ package no.ntnu.tdt4245firefighters;
 
 import sheep.game.Game;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.Display;
 import android.view.Menu;
 import android.view.View;
@@ -31,8 +33,22 @@ public class MainMenu extends Activity {
     }
     
     public void sendConnectingToAGameMessage(View view) {
-    	Intent intent = new Intent(this, DisplayConnectingToAGameActivity.class);
-    	startActivity(intent);    	
+
+    	//Intent intent = new Intent(this, DisplayConnectingToAGameActivity.class);
+    	//startActivity(intent);
+
+        Game game = new Game(this, null);
+        
+        Display display = getWindowManager().getDefaultDisplay();
+        int width = display.getWidth();
+        int height = display.getHeight();
+        
+		Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+		
+        game.pushState(new FirefighterPlayer(width, height, v));
+        
+        setContentView(game);    	
+    	
     }
     
     

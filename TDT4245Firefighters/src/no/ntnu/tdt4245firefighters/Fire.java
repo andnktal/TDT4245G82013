@@ -8,6 +8,7 @@ public class Fire {
 	private Image image;
 	private float x;
 	private float y;
+	private boolean encountered = false;
 	
 	private BoundingBox bb;
 	
@@ -18,7 +19,7 @@ public class Fire {
 		this.x = x;
 		this.y = y;
 		
-		bb = new BoundingBox(x, x + image.getWidth(), y, y + image.getHeight());
+		bb = new BoundingBox(x - 20, x + image.getWidth() + 20, y - 20, y + image.getHeight() + 20);
 	}
 	
 	public Image getImage()
@@ -39,5 +40,15 @@ public class Fire {
 	public float getY()
 	{
 		return y;
+	}
+	
+	public void setEncountered()
+	{
+		encountered = true;
+	}
+	
+	public boolean getEncountered()
+	{
+		return encountered;
 	}
 }
