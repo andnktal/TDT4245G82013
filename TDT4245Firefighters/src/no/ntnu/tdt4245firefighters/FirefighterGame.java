@@ -1,10 +1,14 @@
 package no.ntnu.tdt4245firefighters;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import sheep.game.State;
 import sheep.graphics.Font;
 import sheep.graphics.Image;
@@ -23,10 +27,19 @@ public class FirefighterGame extends State implements WidgetListener{
 
 	
 	private Image map;
-	private Image p1pos;
+	private Image p1pos, p2pos, p3pos, p4pos;
 	
-	private float fP1X;
-	private float fP1Y;
+	private float fP1X = 273f;
+	private float fP1Y = 243f;
+	
+	private float fP2X = 388f;
+	private float fP2Y = 249f;
+	
+	private float fP3X = 400f;
+	private float fP3Y = 617f;
+	
+	private float fP4X = 141f;
+	private float fP4Y = 695f;
 	
 	private BoundingBox bbP1;
 	
@@ -35,6 +48,8 @@ public class FirefighterGame extends State implements WidgetListener{
 	
 	private TextButton timer;
 	private String timeValue;
+	
+	private TextButton eventPanelBtn;	
 	
 	//==|| For the timerline
 	private int countDownMaxSeconds = 30; // 30 seconds
@@ -59,45 +74,27 @@ public class FirefighterGame extends State implements WidgetListener{
 		SetupPlayers(0);
 		
 		timeValue = "15:00";
-	
+		
+		eventPanelBtn = new TextButton(350, 680, "Event Panel", new Paint[]{Font.BLUE_SANS_BOLD_20, Font.BLUE_SANS_BOLD_20});
+		eventPanelBtn.addWidgetListener(this);
+		addTouchListener(eventPanelBtn);
 		
 		timer = new TextButton(screenWidth - 50, 30, timeValue, new Paint[]{Font.BLUE_SANS_BOLD_20, Font.BLUE_SANS_BOLD_20});
 		
 		p1pos = new Image(R.drawable.ff_pos1);
-		fP1X = 50.0f;
-		fP1Y = screenHeight - p1pos.getHeight();
+		p2pos = new Image(R.drawable.ff_pos2);
+		p3pos = new Image(R.drawable.ff_pos3);
+		p4pos = new Image(R.drawable.ff_pos4);
+		
+		
+		//fP1X = 50.0f;
+		//fP1Y = screenHeight - p1pos.getHeight();
 		
 		timerBarRectangle =  new Rect(10, 10, screenWidth - 10 , 30);
 		bbP1 = new BoundingBox(fP1X, fP1X + p1pos.getWidth(), fP1Y, fP1Y + p1pos.getHeight());
 		
 		SetupEvents(0);
-		SetupFire(0);
-		
-		TouchListener touchMove = new TouchListener(){
-
-			@Override
-			public boolean onTouchDown(MotionEvent event) {
-				fP1X = event.getX() - p1pos.getWidth()/2;
-				fP1Y = event.getY() - p1pos.getHeight()/2;
-				Log.i("COORDINATES Touch", "(" + Float.toString(fP1X) + " / " + Float.toString(fP1Y) + ")");
-				
-				return true;
-			}
-
-			@Override
-			public boolean onTouchUp(MotionEvent event) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-
-			@Override
-			public boolean onTouchMove(MotionEvent event) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-		};
-		
+		//SetupFire(0);
 		
 		screenWidthIs = screenWidth;
 		timerBarLength = screenWidth - 10;
@@ -136,8 +133,6 @@ public class FirefighterGame extends State implements WidgetListener{
 		     }
 		  }.start();
 		 
-		
-		this.addTouchListener(touchMove);
 	}
 	
 	private void DisplayMap(int nMapsize)
@@ -186,11 +181,19 @@ public class FirefighterGame extends State implements WidgetListener{
 			fir.getImage().draw(canvas, fir.getX(), fir.getY());
 		}
 		
+		//==|| The players in the map
 		p1pos.draw(canvas, fP1X, fP1Y);
+		p2pos.draw(canvas, fP2X, fP2Y);
+		p3pos.draw(canvas, fP3X, fP3Y);
+		p4pos.draw(canvas, fP4X, fP4Y);
 		
+		//==|| The timer 
 		timer.draw(canvas);
 		
-		canvas.drawRect(timerBarRectangle, timerBar); //drawLine(10, 10, timerBarLength, 10, timerBar);
+		//==|| The event panel button
+		//eventPanelBtn.draw(canvas);
+		
+		//canvas.drawRect(timerBarRectangle, timerBar); //drawLine(10, 10, timerBarLength, 10, timerBar);
 
 		canvas.drawText(p1String, fP1X, fP1Y - 5, p1Paint);
 	}
@@ -224,6 +227,21 @@ public class FirefighterGame extends State implements WidgetListener{
 	@Override
 	public void actionPerformed(WidgetAction action) {
 		// TODO Auto-generated method stub
+		if(action.getSource() == eventPanelBtn)
+		{
+			Log.i("Event panel btn","Clicked");
+			
+			//Intent intent = new Intent(this, CoordinatorEventsActivity.class);
+			//Intent intent = new Intent();
+			//intent.setClassName(this, CoordinatorEventsActivity.class);	
+			CoordinatorEventsActivity newOne = new CoordinatorEventsActivity();
+			//View view = new View(newOne);
+			
+			
+			
+			 // startActivity(intent);
+			  
+		}
 		
 	}
 

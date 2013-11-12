@@ -26,27 +26,13 @@ public class MainMenu extends Activity {
     
     /** Called when the user clicks the Send button */
     public void sendHostingAnewGameMessage(View view) {
-        // Do something in response to button
-    	
-    	//Intent intent = new Intent(this, DisplayHostingNewGameMessageActivity.class);
-    	//startActivity(intent);
-        Game game = new Game(this, null);
-        
-        Display display = getWindowManager().getDefaultDisplay();
-        //Point size = new Point();
-        //display.getSize(size);
-        int width = display.getWidth();
-        int height = display.getHeight();
-        
-        game.pushState(new FirefighterGame(width, height));
-        
-        setContentView(game);
+        Intent intent = new Intent(this, CoordinatorEventsActivity.class);
+    	startActivity(intent);        
     }
     
     public void sendConnectingToAGameMessage(View view) {
     	Intent intent = new Intent(this, DisplayConnectingToAGameActivity.class);
-    	startActivity(intent);
-    	
+    	startActivity(intent);    	
     }
     
     

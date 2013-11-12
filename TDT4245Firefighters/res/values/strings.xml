@@ -10,5 +10,19 @@
     <string name="hosting_a_new_game">Hosting a new game</string>
     <string name="menu">Menu</string>
     <string name="timer">Timer</string>
+    <string name="title_activity_coordinator_event_panel">CoordinatorEventPanelActivity</string>
+    <string name="to_the_game"> to the Game</string>
+    <string name="assign">Assign</string>
+    <string name="save_the_baby">Rescue a baby at F203</string>
+    <string name="save_an_unconscious_man">Rescue an unconscious man at E401</string>
+    <string name="prevent_gas_leak">Prevent gas leak at R102</string>
+    <string name="save_documents">Save documents from EL123</string>
+    <string name="rescue_a_pet">Rescue a cat from R110</string>
+    <string name="close_the_window">Close the window of Room EL410</string>
+    <string name="f1">F1</string>
+    <string name="f2">F2</string>
+    <string name="f3">F3</string>
+    <string name="f4">F4</string>
+    <string name="title_activity_coordinator_events">CoordinatorEventsActivity</string>
 
 </resources>

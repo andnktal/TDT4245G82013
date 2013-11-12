@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="no.ntnu.tdt4245firefighters.CoordinatorEventPanelActivity"
+            android:label="@string/title_activity_coordinator_event_panel" >
+        </activity>
+        <activity
+            android:name="no.ntnu.tdt4245firefighters.CoordinatorEventsActivity"
+            android:label="@string/title_activity_coordinator_events" >
+        </activity>
     </application>
 
 </manifest>

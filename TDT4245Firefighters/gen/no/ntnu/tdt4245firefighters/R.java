@@ -24,36 +24,90 @@ public final class R {
         public static final int baby=0x7f020000;
         public static final int babyrescued=0x7f020001;
         public static final int ff_pos1=0x7f020002;
-        public static final int fire=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int map480x800=0x7f020005;
-        public static final int testmap=0x7f020006;
+        public static final int ff_pos2=0x7f020003;
+        public static final int ff_pos3=0x7f020004;
+        public static final int ff_pos4=0x7f020005;
+        public static final int fire=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int map480x800=0x7f020008;
+        public static final int testmap=0x7f020009;
     }
     public static final class id {
-        public static final int Button01=0x7f080002;
-        public static final int action_settings=0x7f080003;
-        public static final int button1=0x7f080001;
-        public static final int textView1=0x7f080000;
+        public static final int Button01=0x7f08000b;
+        public static final int Button02=0x7f080011;
+        public static final int Button03=0x7f080017;
+        public static final int Button04=0x7f08001d;
+        public static final int Button05=0x7f080023;
+        public static final int CheckBox01=0x7f08000a;
+        public static final int CheckBox02=0x7f080009;
+        public static final int CheckBox03=0x7f080008;
+        public static final int CheckBox04=0x7f080007;
+        public static final int CheckBox05=0x7f08000d;
+        public static final int CheckBox06=0x7f08000e;
+        public static final int CheckBox07=0x7f08000f;
+        public static final int CheckBox08=0x7f080010;
+        public static final int CheckBox09=0x7f080013;
+        public static final int CheckBox10=0x7f080014;
+        public static final int CheckBox11=0x7f080015;
+        public static final int CheckBox12=0x7f080016;
+        public static final int CheckBox13=0x7f080019;
+        public static final int CheckBox14=0x7f08001a;
+        public static final int CheckBox15=0x7f08001b;
+        public static final int CheckBox16=0x7f08001c;
+        public static final int CheckBox17=0x7f08001f;
+        public static final int CheckBox18=0x7f080020;
+        public static final int CheckBox19=0x7f080021;
+        public static final int CheckBox20=0x7f080022;
+        public static final int TextView01=0x7f080006;
+        public static final int TextView02=0x7f08000c;
+        public static final int TextView03=0x7f080012;
+        public static final int TextView04=0x7f080018;
+        public static final int TextView05=0x7f08001e;
+        public static final int action_settings=0x7f080025;
+        public static final int button1=0x7f080024;
+        public static final int button2=0x7f080003;
+        public static final int checkBox1=0x7f080005;
+        public static final int checkBox2=0x7f080001;
+        public static final int checkBox3=0x7f080000;
+        public static final int checkBox4=0x7f080002;
+        public static final int textView1=0x7f080004;
     }
     public static final class layout {
         public static final int activity_connecting_to_agame=0x7f030000;
-        public static final int activity_main_menu=0x7f030001;
+        public static final int activity_coordinator_events=0x7f030001;
+        public static final int activity_main_menu=0x7f030002;
     }
     public static final class menu {
         public static final int connecting_to_agame=0x7f070000;
-        public static final int display_hosting_new_game_message_acivity=0x7f070001;
-        public static final int main_menu=0x7f070002;
+        public static final int coordinator_event_panel=0x7f070001;
+        public static final int coordinator_events=0x7f070002;
+        public static final int display_hosting_new_game_message_acivity=0x7f070003;
+        public static final int main_menu=0x7f070004;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int assign=0x7f05000b;
+        public static final int close_the_window=0x7f050011;
         public static final int connect_to_a_game=0x7f050005;
         public static final int connecting_to_a_game=0x7f050003;
+        public static final int f1=0x7f050012;
+        public static final int f2=0x7f050013;
+        public static final int f3=0x7f050014;
+        public static final int f4=0x7f050015;
         public static final int hello_world=0x7f050002;
         public static final int host_a_new_game=0x7f050004;
         public static final int hosting_a_new_game=0x7f050006;
         public static final int menu=0x7f050007;
+        public static final int prevent_gas_leak=0x7f05000e;
+        public static final int rescue_a_pet=0x7f050010;
+        public static final int save_an_unconscious_man=0x7f05000d;
+        public static final int save_documents=0x7f05000f;
+        public static final int save_the_baby=0x7f05000c;
         public static final int timer=0x7f050008;
+        public static final int title_activity_coordinator_event_panel=0x7f050009;
+        public static final int title_activity_coordinator_events=0x7f050016;
+        public static final int to_the_game=0x7f05000a;
     }
     public static final class style {
         /** 
