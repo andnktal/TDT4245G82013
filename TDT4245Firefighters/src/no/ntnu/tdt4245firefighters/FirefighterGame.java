@@ -152,10 +152,20 @@ public class FirefighterGame extends State implements WidgetListener{
 	
 	private void SetupEvents(int nMapSize)
 	{
-		Event ev = new Event(new Image(R.drawable.baby), 129.0f, 240.0f);
+		Event ev = new Event(new Image(R.drawable.baby), 188.0f, 246.0f);
 		ev.setName("Baby Cradle");
 		ev.setDescription("A baby has been left here.");
 		gameEvents.add(ev);
+		
+		Event ev2 = new Event(new Image(R.drawable.suitcase), 285.0f, 460.0f);
+		ev2.setName("Valuable Documents");
+		ev2.setDescription("A suitcase containing important documents.");
+		gameEvents.add(ev2);
+		
+		Event ev3 = new Event(new Image(R.drawable.unconciousperson), 296.0f, 660.0f);
+		ev3.setName("Unconcious Person");
+		ev3.setDescription("A unconcious person.");
+		gameEvents.add(ev3);
 	}
 	
 	private void SetupFire(int nMapSize)
