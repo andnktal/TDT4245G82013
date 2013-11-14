@@ -22,7 +22,7 @@ public class Event {
 		this.x = x;
 		this.y = y;
 		
-		bb = new BoundingBox(x, x + image.getWidth(), y, y + image.getHeight());
+		bb = new BoundingBox(x - 10, x + image.getWidth() + 10, y - 10, y + image.getHeight() + 10);
 	}
 	
 	public Image getImage()

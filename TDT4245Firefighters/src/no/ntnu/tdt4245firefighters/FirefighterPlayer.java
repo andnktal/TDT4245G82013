@@ -35,6 +35,9 @@ public class FirefighterPlayer extends State{
 	private BoundingBox rescuePoint;
 	
 	private String p1String = "Rescue baby?";
+	private int resultEvent = 1;
+	private StringBuilder resultString = new StringBuilder();
+	//private String resultString = "";
 	private Paint p1Paint;
 	private Event p1Action = null;
 	private Event p1Carrying = null;
@@ -68,6 +71,9 @@ public class FirefighterPlayer extends State{
 		
 		rescuePaint = new Paint();
 		rescuePaint.setColor(Color.BLACK);
+		
+		rescuePaint.setTextSize(15f);
+		
 		
 		rescuePoint = new BoundingBox(196f, 231f, 128f, 190f);
 			
@@ -173,14 +179,26 @@ public class FirefighterPlayer extends State{
 		
 		p1pos = new Image(R.drawable.ff_pos1);
 		p1Paint = new Paint();
+		p1Paint.setTextSize(15f);
 	}	
 
 	private void SetupEvents(int nMapSize)
 	{
-		Event ev = new Event(new Image(R.drawable.baby), 129.0f, 240.0f);
+		Event ev = new Event(new Image(R.drawable.baby), 188.0f, 246.0f);
 		ev.setName("Baby Cradle");
 		ev.setDescription("A baby has been left here.");
 		gameEvents.add(ev);
+		
+		Event ev2 = new Event(new Image(R.drawable.suitcase), 285.0f, 460.0f);
+		ev2.setName("Valuable Documents");
+		ev2.setDescription("A suitcase containing important documents.");
+		gameEvents.add(ev2);
+		
+		Event ev3 = new Event(new Image(R.drawable.unconciousperson), 296.0f, 660.0f);
+		ev3.setName("Unconcious Person");
+		ev3.setDescription("A unconcious person.");
+		gameEvents.add(ev3);		
+		
 	}
 	
 	private void SetupFire(int nMapSize)
@@ -240,6 +258,8 @@ public class FirefighterPlayer extends State{
 			{
 				if(!ev.getHandled())
 					p1String = "Rescue " + ev.getName() + "?";
+				if(!ev.getHandled() && p1Carrying != null)
+					p1String = "Already carrying " + p1Carrying.getName() + "!";
 				
 				p1Action = ev;
 				p1NearEvent = true;
@@ -252,30 +272,33 @@ public class FirefighterPlayer extends State{
 		for(Fire fir : firehazards)
 		{
 			if(fir.getBoundingBox().contains(bbP1))
-			{
-				p1Paint.setColor(Color.RED);
-				
+			{	
 				fir.setEncountered();
 				
 				bPFirehazard = true;
 				
-				if(dt % 15000f == 0f) {
-						v.vibrate(30);
-				}
+				v.vibrate(30);
 				
 			}
 		}
 		
 		if(rescuePoint.contains(bbP1))
 		{
-			p1String = "Rescue Point";
+			if(p1Action == null) {
+				p1String = "Rescue Point";
+				p1Paint.setColor(Color.BLUE);
+			}
 			
 			if(p1Carrying != null)
 			{
-				p1String = "Brought " + p1Carrying.getName() + " to safety!";
+				p1Paint.setColor(Color.BLUE);
+				resultString.append(Integer.toString(resultEvent) + ". Brought " + p1Carrying.getName() + " to safety!");
+				resultString.append(System.getProperty("\n"));
+				//resultString += Integer.toString(resultEvent) + ". Brought " + p1Carrying.getName() + " to safety!" + "\n\n";
 				
-				if(dt % 15000f == 0f)
-					p1Carrying = null;
+				resultEvent++;
+				
+				p1Carrying = null;
 			}
 			
 		}
